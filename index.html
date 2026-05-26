@@ -604,6 +604,7 @@
       </div>
       <div class="correct-answer" id="correct-answer"></div>
       <div class="controls" style="margin-top: 16px;">
+        <button class="ghost" id="btn-retry">↺ もう一度</button>
         <button class="primary" id="btn-next">次の問題 →</button>
       </div>
     </div>
@@ -986,6 +987,13 @@ function nextQ() {
   showQuestion(item);
 }
 
+// もう一度：今表示している問題をそのまま再出題する。
+// 入力欄をクリアして再入力できる状態に戻す。記録（正誤）は採点時のものを保持し、ここでは変更しない。
+function retryQ() {
+  if (!currentItem) return;
+  showQuestion(currentItem);
+}
+
 function skip() {
   if (!currentItem) return;
   // スキップは記録しない（苦手扱いにもしない）
@@ -1092,6 +1100,7 @@ function showAnswer() {
 document.getElementById('btn-check').addEventListener('click', check);
 document.getElementById('btn-skip').addEventListener('click', skip);
 document.getElementById('btn-next').addEventListener('click', nextQ);
+document.getElementById('btn-retry').addEventListener('click', retryQ);
 document.getElementById('btn-show').addEventListener('click', showAnswer);
 document.getElementById('btn-prev').addEventListener('click', goPrev);
 document.getElementById('btn-next-nav').addEventListener('click', goNextInOrder);
